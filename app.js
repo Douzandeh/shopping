@@ -1,6 +1,6 @@
 import Cart from "./models/Cart.js";
 import Products from "./models/Products.js";
-import { fetchData } from "./utils/httpReq.js";
+import { fetchData } from "./Utils/httpReq.js";
 
 const productsNode = document.getElementById("products");
 const cartListNode = document.getElementById("cart_list");
@@ -9,15 +9,14 @@ const totalPriceNode = document
   .querySelector("span");
 
 async function render() {
-  const productsData = await fetchData();
+  const productData = await fetchData();
 
   const cartInstance = new Cart(cartListNode, totalPriceNode);
   const productsInstance = new Products(
     productsNode,
-    productsData,
-    cartInstance,
+    productData,
+    cartInstance
   );
-  console.log(cartInstance);
 
   productsInstance.showProducts();
 }
